@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
-    <h1>Iron Man Armors</h1>
+    <h1>Iron Man Mark Armors</h1>
     <div>
         {% for armor in armors %}
         <div class="button-container">
@@ -16,20 +16,22 @@
     <table id="armor-table" style="display: none;">
         <thead>
             <tr>
-                <th>Armor Name</th>
-                <th>Armor Weapons</th>
-                <th>Armor OS</th>
+                <th>Armor Title</th>
+                <th>Armor Image</th>
                 <th>Armor Color</th>
+                <th>Armor Composition</th>
+                <th>Armor weapons</th>
                 <th>Armor Capabilities</th>
                 <th>Armor Special Features</th>
             </tr>
         </thead>
         <tbody>
             <tr id="armor-info-row">
+                <td id="armor-name"></td>
                 <td id="armor-image"></td>
-                <td id="armor-weapons"></td>
-                <td id="armor-os"></td>
                 <td id="armor-color"></td>
+                <td id="armor-composition"></td>
+                <td id="armor-weapons"></td>
                 <td id="armor-capabilities"></td>
                 <td id="armor-special-features"></td>
             </tr>
@@ -42,12 +44,14 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var armorInfo = JSON.parse(this.responseText);
                     // update table with armor info
-                    document.getElementById("armor-image").innerHTML = '<img src="' + armorInfo.image + '" alt="' + armorName + '"/>';
-                    document.getElementById("armor-weapons").innerHTML = armorInfo.weapons;
-                    document.getElementById("armor-os").innerHTML = armorInfo.os;
-                    document.getElementById("armor-color").innerHTML = armorInfo.color;
-                    document.getElementById("armor-capabilities").innerHTML = armorInfo.capabilities;
-                    document.getElementById("armor-special-features").innerHTML = armorInfo.special_features;
+                    document.getElementById("armor-name").innerHTML = armorInfo.Armor_title;
+                    document.getElementById("armor-image").innerHTML = '<img src="' + armorInfo.Armor_image + '" alt="' + armorName + '"/>';
+                    
+                    document.getElementById("armor-color").innerHTML = armorInfo.Armor_color;
+                    document.getElementById("armor-composition").innerHTML = armorInfo.Armor_composition;
+                    document.getElementById("armor-weapons").innerHTML = armorInfo.Armor_weapons;
+                    document.getElementById("armor-capabilities").innerHTML = armorInfo.Armor_capabilities;
+                    document.getElementById("armor-special-features").innerHTML = armorInfo.Armor_special_features;
                     // display table
                     document.getElementById("armor-table").style.display = "table";
                 }
